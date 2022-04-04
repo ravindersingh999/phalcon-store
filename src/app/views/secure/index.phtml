@@ -1,0 +1,26 @@
+<?php
+echo '<div style="margin-left : 20px;">';
+echo "<h2>Phalcon Event</h2>";
+
+echo PHP_EOL;
+
+echo $this->tag->linkTo(
+    '/secure/role',
+    'Add Role'
+);
+echo '<br>';
+echo $this->tag->linkTo(
+    '/secure/component',
+    'Add Component'
+);
+echo '<br>';
+echo $this->tag->linkTo(
+    '/secure/action',
+    'Add Action'
+);
+echo '<br>';
+echo $this->tag->linkTo(
+    '/secure/permission',
+    'Add Permissions'
+);
+echo '</div>';

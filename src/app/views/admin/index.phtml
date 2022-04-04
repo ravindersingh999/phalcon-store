@@ -1,0 +1,39 @@
+<?php
+echo '<div style="margin-left : 30px;">';
+echo "<h2>Admin Dashboard</h2>";
+
+echo PHP_EOL;
+$bearer = $this->request->get('bearer');
+
+echo $this->tag->linkTo(
+    'users/index'.'?bearer='.$bearer,
+    'Add User'
+);
+echo '<br>';
+echo $this->tag->linkTo(
+    'product/add'.'?bearer='.$bearer,
+    'Add Products'
+);
+echo '<br>';
+echo $this->tag->linkTo(
+    'product/index'.'?bearer='.$bearer,
+    'Products'
+);
+echo '<br>';
+echo $this->tag->linkTo(
+    'order/index'.'?bearer='.$bearer,
+    'Orders'
+);
+echo '<br>';
+echo $this->tag->linkTo(
+    'order/addorder'.'?bearer='.$bearer,
+    'Place Order'
+);
+echo '<br>';
+echo $this->tag->linkTo(
+    '/settings/index'.'?bearer='.$bearer,
+    'Settings'
+);
+echo '<br>';
+echo $this->tag->LinkTo(["logout/index?bearer=".$bearer, "Log Out", 'class' => 'btn btn-danger mt-4']);
+echo '</div>';

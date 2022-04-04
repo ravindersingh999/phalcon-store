@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container-fluid col text-center mt-2">
+        <h2>Login</h2>
+    </div>
+
+    <div class="container-fluid border border-dark w-50 p-3 mt-5">
+
+        <form method="POST">
+            <div class="form-outline mb-4">
+                <label class="form-label" for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control" />
+            </div>
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" />
+            </div>
+
+            <div class="text-danger">
+                <?php if (isset($loginmsg)) {
+                    echo $loginmsg;
+                }; ?>
+            </div>
+
+            <div class="col text-center">
+                <input type="submit" class="btn btn-primary text-center" value="Login" name="login">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
