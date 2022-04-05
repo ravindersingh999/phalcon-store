@@ -49,37 +49,37 @@ class notificationListeners
         return $data;
     }
 
-    public function beforeHandleRequest(Event $event, \Phalcon\Mvc\Application $application)
-    {
-        $aclfile = APP_PATH . '/security/acl.cache';
-        if (is_file($aclfile) == true) {
-            $acl = unserialize(
-                file_get_contents($aclfile)
-            );
+    // public function beforeHandleRequest(Event $event, \Phalcon\Mvc\Application $application)
+    // {
+    //     $aclfile = APP_PATH . '/security/acl.cache';
+    //     if (is_file($aclfile) == true) {
+    //         $acl = unserialize(
+    //             file_get_contents($aclfile)
+    //         );
 
-            $bearer = $application->request->get('bearer');
-            if ($bearer) {
-                try {
-                    $key = "example_key";
-                    $decoded = JWT::decode($bearer, new Key($key, 'HS256'));
-                    $role = $decoded->role;
-                    $controller = $application->router->getControllerName();
-                    $action = $application->router->getActionName();
-                    if (!$role || true !== $acl->isAllowed($role, $controller, $action)) {
-                        echo "access denied";
-                        die();
-                    }
-                } catch (\Exception $e) {
-                    $e->getMessage();
-                    die;
-                }
-            } else {
-                echo "token not provided";
-                die;
-            }
-        } else {
-            echo "No ACL";
-            die();
-        }
-    }
+    //         $bearer = $application->request->get('bearer');
+    //         if ($bearer) {
+    //             try {
+    //                 $key = "example_key";
+    //                 $decoded = JWT::decode($bearer, new Key($key, 'HS256'));
+    //                 $role = $decoded->role;
+    //                 $controller = $application->router->getControllerName();
+    //                 $action = $application->router->getActionName();
+    //                 if (!$role || true !== $acl->isAllowed($role, $controller, $action)) {
+    //                     echo "access denied";
+    //                     die();
+    //                 }
+    //             } catch (\Exception $e) {
+    //                 $e->getMessage();
+    //                 die;
+    //             }
+    //         } else {
+    //             echo "token not provided";
+    //             die;
+    //         }
+    //     } else {
+    //         echo "No ACL";
+    //         die();
+    //     }
+    // }
 }

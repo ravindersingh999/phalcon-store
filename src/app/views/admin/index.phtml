@@ -6,6 +6,11 @@ echo PHP_EOL;
 $bearer = $this->request->get('bearer');
 
 echo $this->tag->linkTo(
+    'users/userlist'.'?bearer='.$bearer,
+    'Users'
+);
+echo '<br>';
+echo $this->tag->linkTo(
     'users/index'.'?bearer='.$bearer,
     'Add User'
 );

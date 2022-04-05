@@ -36,4 +36,55 @@ class UsersController extends Controller
         $user->save();
         // $this->response->redirect('/users/index?bearer='.$bearer);
     }
+
+    public function userlistAction()
+    {
+        $this->view->user = Users::find();
+    }
+
+    public function deleteAction()
+    {
+        $bearer = $this->request->get('bearer');
+        $id = $this->request->getPost('id');
+        $user = Users::findFirst(
+            [
+                "id = '$id'"
+            ]
+        );
+        // print_r(json_encode($user));
+        // die;
+        $user->delete();
+        $this->response->redirect('/users/userlist?bearer=' . $bearer);
+    }
+
+    public function edituserAction()
+    {
+        $id = $this->request->getPost('id');
+        $this->view->user = Users::findFirst(
+            [
+                "id = '$id'"
+            ]
+        );
+    }
+
+    public function editAction()
+    {
+        $id = $this->request->getPost('id');
+        $name = $this->request->getPost('name');
+        $email = $this->request->getPost('email');
+        $role = $this->request->getPost('role');
+
+        $users = Users::findFirst(
+            [
+                "id = '$id'"
+            ]
+        );
+
+        $users->name = $name;
+        $users->email = $email;
+        $users->role = $role;
+        $users->save();
+
+        $this->response->redirect('/users/userlist?bearer='.$this->request->get('bearer'));
+    }
 }
